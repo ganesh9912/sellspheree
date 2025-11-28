@@ -1,0 +1,144 @@
+<% layout("/layouts/boilerplate") -%>
+
+<style>
+  body {
+    background-color: #f1f3f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .cart-container {
+    margin-top: 50px;
+  }
+
+  .cart-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 25px;
+  }
+
+  .cart-card img {
+    max-width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .cart-details {
+    padding: 25px;
+  }
+
+  .cart-details h4 {
+    font-weight: 700;
+    color: #212121;
+    margin-bottom: 10px;
+  }
+
+  .cart-details p {
+    margin-bottom: 10px;
+  }
+
+  .remove-btn {
+    background-color: #ff3f3f;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  .remove-btn:hover {
+    background-color: #e63939;
+  }
+
+  .price-summary {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .price-summary h5 {
+    font-weight: 700;
+  }
+
+  .checkout-btn {
+    background-color: #fb641b;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    padding: 12px;
+    width: 100%;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  .checkout-btn:hover {
+    background-color: #e55d1a;
+  }
+</style>
+
+<div class="container cart-container">
+
+  <h2 class="mb-4">Your Cart</h2>
+
+  <% if (cartItems.length === 0) { %>
+    <div class="alert alert-danger text-center">
+      Your cart is empty!
+    </div>
+  <% } else { %>
+
+    <div class="row">
+
+      <% cartItems.forEach(item => { %>
+        <div class="col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="card cart-card d-flex flex-row align-items-center">
+
+            <!-- Left: Product Image -->
+            <div class="col-md-4 p-3">
+              <img src="<%= item.image %>" alt="<%= item.name %>">
+            </div>
+
+            <!-- Right: Cart Details -->
+            <div class="col-md-8 cart-details">
+              <h4><%= item.name %></h4>
+              <p><strong>Price:</strong> ₹<%= item.price %></p>
+
+              <form action="/cart/remove/<%= item.id %>" method="POST">
+                <button type="submit" class="remove-btn">Remove</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      <% }) %>
+
+    </div>
+
+    <!-- Price Summary -->
+    <div class="col-lg-10 col-md-12 col-sm-12 mx-auto">
+      <div class="price-summary">
+        <h5>Price Summary</h5>
+        <hr>
+
+        <% 
+          let total = 0;
+          cartItems.forEach(i => total += Number(i.price));
+        %>
+
+        <p>Subtotal: ₹<%= total %></p>
+        <p>Delivery Charges: ₹50</p>
+        <hr>
+        <p><strong>Total: ₹<%= total + 50 %></strong></p>
+
+        <button class="checkout-btn mt-3">Proceed to Checkout</button>
+      </div>
+    </div>
+
+  <% } %>
+
+</div>

@@ -1,0 +1,117 @@
+body {
+    background-color: blue;
+}
+
+
+.f-info-links a{
+    text-decoration: none;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-links{
+    width: 100%;
+}
+
+.f-info-socials{
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.f-info-social i{
+    margin-right: 1rem;
+}
+
+.f-info {
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+
+.card-body{
+    padding: 0 !important;
+}
+
+.listing-link{
+    text-decoration: none;
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+
+/* show page */
+.show-img {
+    height: 30vh;
+    
+}
+
+.btns {
+    display: flex;
+}
+
+.edit-btn {
+    background-color: black;
+    border: none !important;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 3px;
+    
+}
+
+.edit-btn:hover{
+    background-color: red;
+}
+
+.row{
+    display: flex;
+}
+
+#description{
+    height: 70px;
+}
+
+.hi{
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.hi:hover{
+    background: radial-gradient(780px at 37.8% 100.3%, rgb(19, 55, 115) 2.2%, rgb(32, 7, 80) 20.2%, rgb(27, 88, 111) 58.6%, rgb(115, 88, 44) 75%, rgb(99, 19, 90) 89.6%, rgb(12, 51, 76) 96.1%);
+    color: white;
+}
+
+#map{
+    height: 400px;
+    width: 100vh;
+    margin: auto;
+
+}

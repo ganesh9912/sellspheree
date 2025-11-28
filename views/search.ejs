@@ -1,0 +1,12 @@
+<% layout("/layouts/boilerplate") -%>
+<div class="card-body">
+    <p class="card-text">
+        <b><%= listing.title %></b> <br>
+        <strong>Title:</strong> <%= listing.title %><br>
+        <strong>Price:</strong> <%= listing.price %><br>
+        <strong>username:</strong> <%= listing.owner.username %><br>
+        <strong>Description:</strong> <%= listing.description %><br>
+        <strong>Location:</strong> <%= listing.location %><br>
+        <strong>Country:</strong> <%= listing.country %>
+    </p>
+</div>

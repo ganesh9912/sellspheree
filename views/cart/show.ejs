@@ -1,0 +1,111 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container my-5">
+  <h2 class="text-center mb-4">Your Shopping Cart</h2>
+
+  <% if(cartItems.length === 0) { %>
+    <div class="alert alert-danger text-center">Your cart is empty!</div>
+  <% } else { %>
+
+  <div class="row">
+    <!-- Cart Items -->
+    <div class="col-lg-8 col-md-12">
+      <% cartItems.forEach(item => { %>
+        <div class="card mb-3 shadow-sm cart-item">
+          <div class="row g-0 align-items-center">
+            
+            <!-- Product Image -->
+            <div class="col-md-3 p-3">
+              <img src="<%= item.image %>" class="img-fluid rounded" alt="<%= item.name %>" style="height:120px; object-fit:cover;">
+            </div>
+            
+            <!-- Product Details -->
+            <div class="col-md-6 p-3">
+              <h5 class="mb-1"><%= item.name %></h5>
+              <p class="mb-1 text-muted">Description or short info</p>
+              <p class="mb-1 fw-bold">₹<%= item.price %></p>
+
+              <!-- Quantity & Remove -->
+              <form class="d-flex gap-2" action="/cart/remove/<%= item.id %>" method="POST">
+                <input type="number" name="quantity" value="1" min="1" class="form-control w-25">
+                <button class="btn btn-danger btn-sm">Remove</button>
+              </form>
+            </div>
+
+            <!-- Subtotal -->
+            <div class="col-md-3 text-center">
+              <h6>Subtotal</h6>
+              <p class="fw-bold">₹<%= item.price %></p>
+            </div>
+
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- Total Summary -->
+    <div class="col-lg-4 col-md-12">
+      <div class="card shadow-sm p-4 mb-3">
+        <h5 class="mb-3">Order Summary</h5>
+        <hr>
+        <div class="d-flex justify-content-between">
+          <span>Total Items:</span>
+          <span><%= cartItems.length %></span>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+          <span>Total Price:</span>
+          <span>₹<%= totalPrice %></span>
+        </div>
+        <hr>
+        <form action="/payment/create-checkout-session" method="POST">
+            <input type="hidden" name="totalPrice" value="<%= totalPrice %>">
+          <button class="btn btn-success w-100 btn-lg">Buy All</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</div>
+
+
+<style>
+  body {
+    background-color: #f1f3f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .cart-item {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .cart-item h5 {
+    color: #212121;
+  }
+
+  .cart-item p {
+    font-size: 0.9rem;
+  }
+
+  .btn-success {
+    background-color: #fb641b;
+    border: none;
+    font-weight: 700;
+    transition: 0.3s;
+  }
+
+  .btn-success:hover {
+    background-color: #e55d1a;
+  }
+
+  .card p.fw-bold {
+    font-size: 1rem;
+    color: #111;
+  }
+
+  @media(max-width:768px){
+    .cart-item .col-md-3, .cart-item .col-md-6 {
+      text-align: center;
+    }
+  }
+</style>
